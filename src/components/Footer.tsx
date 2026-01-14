@@ -1,4 +1,6 @@
-import { Link } from "react-router-dom";
+"use client";
+
+import Link from "next/link";
 import { Car, Facebook, Instagram, Twitter, Mail, Phone, MapPin } from "lucide-react";
 
 const Footer = () => {
@@ -8,7 +10,7 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* Brand */}
           <div className="space-y-4">
-            <Link to="/" className="flex items-center gap-2">
+            <Link href="/" className="flex items-center gap-2">
               <div className="w-10 h-10 rounded-xl bg-primary flex items-center justify-center">
                 <Car className="h-6 w-6 text-primary-foreground" />
               </div>
@@ -50,22 +52,22 @@ const Footer = () => {
             <h3 className="font-display font-semibold text-lg mb-4">Navigation</h3>
             <ul className="space-y-2">
               <li>
-                <Link to="/" className="text-background/70 hover:text-primary transition-colors text-sm">
+                <Link href="/" className="text-background/70 hover:text-primary transition-colors text-sm">
                   Accueil
                 </Link>
               </li>
               <li>
-                <Link to="/recherche" className="text-background/70 hover:text-primary transition-colors text-sm">
+                <Link href="/recherche" className="text-background/70 hover:text-primary transition-colors text-sm">
                   Véhicules à vendre
                 </Link>
               </li>
               <li>
-                <Link to="/recherche?type=location" className="text-background/70 hover:text-primary transition-colors text-sm">
+                <Link href="/recherche?type=location" className="text-background/70 hover:text-primary transition-colors text-sm">
                   Location de véhicules
                 </Link>
               </li>
               <li>
-                <Link to="/agences" className="text-background/70 hover:text-primary transition-colors text-sm">
+                <Link href="/agences" className="text-background/70 hover:text-primary transition-colors text-sm">
                   Agences partenaires
                 </Link>
               </li>
@@ -77,12 +79,12 @@ const Footer = () => {
             <h3 className="font-display font-semibold text-lg mb-4">Pour les agences</h3>
             <ul className="space-y-2">
               <li>
-                <Link to="/inscription?role=agency" className="text-background/70 hover:text-primary transition-colors text-sm">
+                <Link href="/inscription?role=agency" className="text-background/70 hover:text-primary transition-colors text-sm">
                   Devenir partenaire
                 </Link>
               </li>
               <li>
-                <Link to="/dashboard/agence" className="text-background/70 hover:text-primary transition-colors text-sm">
+                <Link href="/dashboard/agence" className="text-background/70 hover:text-primary transition-colors text-sm">
                   Espace agence
                 </Link>
               </li>

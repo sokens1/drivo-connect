@@ -1,5 +1,8 @@
-import { useState } from "react";
-import { Link, useNavigate, useSearchParams } from "react-router-dom";
+"use client";
+
+import { useEffect, useState } from "react";
+import Link from "next/link";
+import { useRouter, useSearchParams } from "next/navigation";
 import {
   User,
   Car,
@@ -28,22 +31,29 @@ import { formatPrice } from "@/data/mockData";
 import { toast } from "sonner";
 
 const ClientDashboard = () => {
-  const navigate = useNavigate();
-  const [searchParams, setSearchParams] = useSearchParams();
+  const router = useRouter();
+  const searchParams = useSearchParams();
   const { user, setUser, vehicles, favorites } = useApp();
   const [isEditing, setIsEditing] = useState(false);
   const [editName, setEditName] = useState(user?.name || "");
   const [editPhone, setEditPhone] = useState(user?.phone || "");
 
-  const activeTab = searchParams.get("tab") || "overview";
+  const activeTab = searchParams?.get("tab") || "overview";
 
   const setActiveTab = (tab: string) => {
     if (tab === "overview") {
-      setSearchParams({});
-    } else {
-      setSearchParams({ tab });
+      router.push("/dashboard");
+      return;
     }
+    router.push(`/dashboard?tab=${tab}`);
   };
+
+  // Redirect agency to their dashboard
+  useEffect(() => {
+    if (user?.role === "agency") {
+      router.replace("/dashboard/agence");
+    }
+  }, [router, user?.role]);
 
   // Redirect if not logged in
   if (!user) {
@@ -58,7 +68,7 @@ const ClientDashboard = () => {
                 Connectez-vous pour accéder à votre espace client.
               </p>
               <Button variant="hero" asChild>
-                <Link to="/connexion">Se connecter</Link>
+                <Link href="/connexion">Se connecter</Link>
               </Button>
             </CardContent>
           </Card>
@@ -67,9 +77,7 @@ const ClientDashboard = () => {
     );
   }
 
-  // Redirect agency to their dashboard
   if (user.role === "agency") {
-    navigate("/dashboard/agence");
     return null;
   }
 
@@ -151,7 +159,7 @@ const ClientDashboard = () => {
             <div className="flex items-center justify-between">
               <h2 className="text-2xl font-bold">Mes réservations</h2>
               <Button variant="outline" asChild>
-                <Link to="/recherche?type=location">
+                <Link href="/recherche?type=location">
                   <Search className="h-4 w-4 mr-2" />
                   Nouvelle recherche
                 </Link>
@@ -196,7 +204,7 @@ const ClientDashboard = () => {
                   <Calendar className="h-12 w-12 mx-auto text-muted-foreground mb-4" />
                   <p className="text-muted-foreground">Aucune réservation pour l'instant</p>
                   <Button variant="hero" className="mt-4" asChild>
-                    <Link to="/recherche?type=location">Louer un véhicule</Link>
+                    <Link href="/recherche?type=location">Louer un véhicule</Link>
                   </Button>
                 </CardContent>
               </Card>
@@ -390,7 +398,7 @@ const ClientDashboard = () => {
                   </div>
                 </CardContent>
               </Card>
-              <Link to="/favoris">
+              <Link href="/favoris">
                 <Card className="cursor-pointer hover:shadow-md transition-shadow">
                   <CardContent className="pt-6">
                     <div className="flex items-center gap-4">
@@ -466,25 +474,25 @@ const ClientDashboard = () => {
             {/* Quick Actions */}
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
               <Button variant="outline" className="h-auto py-4 flex-col gap-2" asChild>
-                <Link to="/recherche">
+                <Link href="/recherche">
                   <Car className="h-6 w-6" />
                   <span>Chercher un véhicule</span>
                 </Link>
               </Button>
               <Button variant="outline" className="h-auto py-4 flex-col gap-2" asChild>
-                <Link to="/favoris">
+                <Link href="/favoris">
                   <Heart className="h-6 w-6" />
                   <span>Mes favoris</span>
                 </Link>
               </Button>
               <Button variant="outline" className="h-auto py-4 flex-col gap-2" asChild>
-                <Link to="/agences">
+                <Link href="/agences">
                   <MapPin className="h-6 w-6" />
                   <span>Agences</span>
                 </Link>
               </Button>
               <Button variant="outline" className="h-auto py-4 flex-col gap-2" asChild>
-                <Link to="/contact">
+                <Link href="/contact">
                   <Bell className="h-6 w-6" />
                   <span>Support</span>
                 </Link>
@@ -497,7 +505,7 @@ const ClientDashboard = () => {
                 <div className="flex items-center justify-between mb-4">
                   <h2 className="text-xl font-bold">Vos favoris</h2>
                   <Button variant="ghost" size="sm" asChild>
-                    <Link to="/favoris">
+                    <Link href="/favoris">
                       Voir tout
                       <ChevronRight className="h-4 w-4 ml-1" />
                     </Link>

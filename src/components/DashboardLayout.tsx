@@ -1,5 +1,7 @@
+"use client";
+
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useRouter } from "next/navigation";
 import { Menu, Car } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import DashboardSidebar from "./DashboardSidebar";
@@ -12,14 +14,14 @@ interface DashboardLayoutProps {
 }
 
 const DashboardLayout = ({ children, onAddVehicle }: DashboardLayoutProps) => {
-  const navigate = useNavigate();
+  const router = useRouter();
   const { setUser } = useApp();
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   const handleLogout = () => {
     setUser(null);
     toast.success("Déconnexion réussie");
-    navigate("/");
+    router.push("/");
   };
 
   return (

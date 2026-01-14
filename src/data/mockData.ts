@@ -1,8 +1,12 @@
 // Mock data for vehicles
-import carSedan from "@/assets/car-sedan.jpg";
-import carSuv from "@/assets/car-suv.jpg";
-import carCompact from "@/assets/car-compact.jpg";
-import carPickup from "@/assets/car-pickup.jpg";
+const carSedan =
+  "https://images.unsplash.com/photo-1502877338535-766e1452684a?auto=format&fit=crop&w=1600&q=80";
+const carSuv =
+  "https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=1600&q=80";
+const carCompact =
+  "https://images.unsplash.com/photo-1493238792000-8113da705763?auto=format&fit=crop&w=1600&q=80";
+const carPickup =
+  "https://images.unsplash.com/photo-1502877828070-33f6ee15cb3e?auto=format&fit=crop&w=1600&q=80";
 
 export interface Vehicle {
   id: string;

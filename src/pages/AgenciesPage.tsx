@@ -1,4 +1,6 @@
-import { Link } from "react-router-dom";
+"use client";
+
+import Link from "next/link";
 import { MapPin, Star, Shield, Phone, ExternalLink } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -68,7 +70,7 @@ const AgenciesPage = () => {
 
                   <div className="flex gap-2">
                     <Button variant="outline" className="flex-1" asChild>
-                      <Link to={`/recherche?agency=${agency.id}`}>
+                      <Link href="/authentification">
                         Voir les véhicules
                       </Link>
                     </Button>

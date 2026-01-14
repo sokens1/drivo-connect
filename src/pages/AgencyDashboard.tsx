@@ -1,5 +1,8 @@
-import { useState } from "react";
-import { Link, useNavigate, useSearchParams } from "react-router-dom";
+"use client";
+
+import { useEffect, useState } from "react";
+import Link from "next/link";
+import { useRouter, useSearchParams } from "next/navigation";
 import {
   Car,
   Plus,
@@ -45,8 +48,8 @@ import { formatPrice, formatNumber, mockVehicles } from "@/data/mockData";
 import { toast } from "sonner";
 
 const AgencyDashboard = () => {
-  const navigate = useNavigate();
-  const [searchParams, setSearchParams] = useSearchParams();
+  const router = useRouter();
+  const searchParams = useSearchParams();
   const { user, setUser } = useApp();
   const [showAddVehicle, setShowAddVehicle] = useState(false);
 
@@ -54,10 +57,10 @@ const AgencyDashboard = () => {
 
   const setActiveTab = (tab: string) => {
     if (tab === "overview") {
-      setSearchParams({});
-    } else {
-      setSearchParams({ tab });
+      router.push("/dashboard/agence");
+      return;
     }
+    router.push(`/dashboard/agence?tab=${tab}`);
   };
 
   // Mock agency vehicles
@@ -94,7 +97,7 @@ const AgencyDashboard = () => {
               </p>
               <div className="flex flex-col gap-3">
                 <Button variant="hero" asChild>
-                  <Link to="/connexion">Se connecter</Link>
+                  <Link href="/connexion">Se connecter</Link>
                 </Button>
               </div>
             </CardContent>
@@ -105,8 +108,13 @@ const AgencyDashboard = () => {
   }
 
   // Redirect client to their dashboard
+  useEffect(() => {
+    if (user?.role === "client") {
+      router.replace("/dashboard");
+    }
+  }, [router, user?.role]);
+
   if (user.role === "client") {
-    navigate("/dashboard");
     return null;
   }
 
@@ -247,7 +255,7 @@ const AgencyDashboard = () => {
                       </div>
                       <div className="flex gap-2">
                         <Button variant="outline" size="icon" asChild>
-                          <Link to={`/vehicule/${vehicle.id}`}>
+                          <Link href={`/vehicule/${vehicle.id}`}>
                             <Eye className="h-4 w-4" />
                           </Link>
                         </Button>

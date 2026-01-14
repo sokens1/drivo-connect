@@ -1,5 +1,8 @@
+"use client";
+
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { Eye, EyeOff, Car, Mail, Lock, User, Phone, Building2, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -10,12 +13,16 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { useApp } from "@/context/AppContext";
 import { toast } from "sonner";
 
-const AuthPage = () => {
-  const navigate = useNavigate();
+type AuthPageProps = {
+  initialTab?: "login" | "register";
+};
+
+const AuthPage = ({ initialTab = "login" }: AuthPageProps) => {
+  const router = useRouter();
   const { setUser } = useApp();
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const [activeTab, setActiveTab] = useState("login");
+  const [activeTab, setActiveTab] = useState<"login" | "register">(initialTab);
   const [userType, setUserType] = useState<"client" | "agency">("client");
 
   // Login form state
@@ -63,7 +70,7 @@ const AuthPage = () => {
     });
     
     toast.success("Connexion réussie !");
-    navigate("/");
+    router.push("/dashboard");
     setIsLoading(false);
   };
 
@@ -108,7 +115,7 @@ const AuthPage = () => {
     });
 
     toast.success("Inscription réussie ! Bienvenue sur Drivo.");
-    navigate(userType === "agency" ? "/dashboard/agence" : "/");
+    router.push(userType === "agency" ? "/dashboard/agence" : "/");
     setIsLoading(false);
   };
 
@@ -117,7 +124,7 @@ const AuthPage = () => {
       {/* Header */}
       <header className="bg-card border-b py-4">
         <div className="container mx-auto px-4">
-          <Link to="/" className="flex items-center gap-2 w-fit">
+          <Link href="/" className="flex items-center gap-2 w-fit">
             <div className="w-10 h-10 rounded-xl bg-primary flex items-center justify-center">
               <Car className="h-6 w-6 text-primary-foreground" />
             </div>
@@ -139,7 +146,7 @@ const AuthPage = () => {
             </CardDescription>
           </CardHeader>
           <CardContent>
-            <Tabs value={activeTab} onValueChange={setActiveTab}>
+            <Tabs value={activeTab} onValueChange={(value) => setActiveTab(value as "login" | "register")}>
               <TabsList className="grid w-full grid-cols-2 mb-6">
                 <TabsTrigger value="login">Connexion</TabsTrigger>
                 <TabsTrigger value="register">Inscription</TabsTrigger>
@@ -195,7 +202,7 @@ const AuthPage = () => {
                         Se souvenir de moi
                       </Label>
                     </div>
-                    <Link to="/mot-de-passe-oublie" className="text-sm text-primary hover:underline">
+                    <Link href="/mot-de-passe-oublie" className="text-sm text-primary hover:underline">
                       Mot de passe oublié ?
                     </Link>
                   </div>
@@ -371,11 +378,11 @@ const AuthPage = () => {
                     />
                     <Label htmlFor="terms" className="text-sm font-normal leading-tight">
                       J'accepte les{" "}
-                      <Link to="/conditions" className="text-primary hover:underline">
+                      <Link href="/conditions" className="text-primary hover:underline">
                         conditions d'utilisation
                       </Link>{" "}
                       et la{" "}
-                      <Link to="/confidentialite" className="text-primary hover:underline">
+                      <Link href="/confidentialite" className="text-primary hover:underline">
                         politique de confidentialité
                       </Link>
                     </Label>

@@ -1,5 +1,8 @@
+"use client";
+
 import { useState, useMemo } from "react";
-import { Link, useSearchParams } from "react-router-dom";
+import Link from "next/link";
+import { useRouter, useSearchParams } from "next/navigation";
 import {
   Search,
   SlidersHorizontal,
@@ -34,7 +37,8 @@ import { useApp } from "@/context/AppContext";
 import { formatPrice } from "@/data/mockData";
 
 const SearchPage = () => {
-  const [searchParams, setSearchParams] = useSearchParams();
+  const router = useRouter();
+  const searchParams = useSearchParams();
   const { vehicles } = useApp();
   
   const [searchQuery, setSearchQuery] = useState(searchParams.get("q") || "");
@@ -99,7 +103,7 @@ const SearchPage = () => {
     setCategoryFilter("all");
     setPriceRange([0, 50000000]);
     setLocationFilter("");
-    setSearchParams({});
+    router.push("/recherche");
   };
 
   const hasActiveFilters = searchQuery || typeFilter !== "all" || categoryFilter !== "all" || locationFilter;
@@ -159,6 +163,11 @@ const SearchPage = () => {
           <div className="container mx-auto px-4">
             {/* Toolbar */}
             <div className="flex flex-wrap items-center justify-between gap-4 mb-6">
+              <nav className="flex items-center gap-2 text-sm" aria-label="Fil d'Ariane">
+                <Link href="/" className="text-muted-foreground hover:text-primary">
+                  Accueil
+                </Link>
+              </nav>
               <div className="flex items-center gap-2 flex-wrap">
                 <p className="text-muted-foreground">
                   <span className="font-semibold text-foreground">{filteredVehicles.length}</span> véhicules trouvés

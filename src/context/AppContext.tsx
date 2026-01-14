@@ -1,3 +1,5 @@
+"use client";
+
 import React, { createContext, useContext, useState, ReactNode } from "react";
 import { User, Vehicle, mockVehicles } from "@/data/mockData";
 

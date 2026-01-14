@@ -1,4 +1,7 @@
-import { Link, useLocation } from "react-router-dom";
+"use client";
+
+import Link from "next/link";
+import { usePathname, useSearchParams } from "next/navigation";
 import { 
   Car, 
   LayoutDashboard, 
@@ -37,7 +40,8 @@ interface DashboardSidebarProps {
 }
 
 const DashboardSidebar = ({ isOpen, onClose, onLogout, onAddVehicle }: DashboardSidebarProps) => {
-  const location = useLocation();
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
   const { user } = useApp();
   
   const isAgency = user?.role === "agency";
@@ -72,9 +76,9 @@ const DashboardSidebar = ({ isOpen, onClose, onLogout, onAddVehicle }: Dashboard
     if (!href) return false;
     const [path, query] = href.split("?");
     if (query) {
-      return location.pathname === path && location.search.includes(query);
+      return pathname === path && (searchParams?.toString() ?? "").includes(query);
     }
-    return location.pathname === path && !location.search;
+    return pathname === path && !(searchParams?.toString() ?? "");
   };
 
   return (
@@ -97,7 +101,7 @@ const DashboardSidebar = ({ isOpen, onClose, onLogout, onAddVehicle }: Dashboard
         <div className="flex flex-col h-full">
           {/* Logo */}
           <div className="p-6 border-b border-border">
-            <Link to="/" className="flex items-center gap-3">
+            <Link href="/" className="flex items-center gap-3">
               <div className="w-10 h-10 rounded-xl bg-primary flex items-center justify-center">
                 <Car className="h-6 w-6 text-primary-foreground" />
               </div>
@@ -138,7 +142,7 @@ const DashboardSidebar = ({ isOpen, onClose, onLogout, onAddVehicle }: Dashboard
                 <li key={index}>
                   {item.href ? (
                     <Link
-                      to={item.href}
+                      href={item.href}
                       onClick={onClose}
                       className={cn(
                         "flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium transition-all",
@@ -176,13 +180,6 @@ const DashboardSidebar = ({ isOpen, onClose, onLogout, onAddVehicle }: Dashboard
 
           {/* Bottom Section */}
           <div className="p-4 border-t border-border space-y-2">
-            <Link
-              to="/"
-              className="flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium text-muted-foreground hover:bg-muted hover:text-foreground transition-all"
-            >
-              <Car className="h-5 w-5" />
-              <span>Retour au site</span>
-            </Link>
             <button
               onClick={onLogout}
               className="flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium text-destructive hover:bg-destructive/10 transition-all w-full"
