@@ -90,8 +90,8 @@ const DashboardSidebar = ({ isOpen, onClose, onLogout, onAddVehicle }: Dashboard
       {/* Sidebar */}
       <aside
         className={cn(
-          "fixed left-0 top-0 h-full w-72 bg-card border-r border-border z-50 transition-transform duration-300 lg:translate-x-0 lg:static lg:z-0",
-          isOpen ? "translate-x-0" : "-translate-x-full"
+          "fixed left-0 top-0 h-full w-72 bg-card border-r border-border z-50 transition-transform duration-300",
+          isOpen ? "translate-x-0" : "-translate-x-full lg:translate-x-0"
         )}
       >
         <div className="flex flex-col h-full">
