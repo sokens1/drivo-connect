@@ -389,15 +389,6 @@ const AuthPage = () => {
               </TabsContent>
             </Tabs>
 
-            {/* Guest CTA */}
-            <div className="mt-6 text-center">
-              <Link
-                to="/"
-                className="text-sm text-muted-foreground hover:text-primary transition-colors"
-              >
-                Continuer en tant qu'invité →
-              </Link>
-            </div>
           </CardContent>
         </Card>
       </main>
