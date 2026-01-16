@@ -1,7 +1,12 @@
-import FavoritesPage from "@/pages/client/Favorites";
+import { Suspense } from "react";
+import FavoritesPage from "@/views/client/Favorites";
 
 const Page = () => {
-    return <FavoritesPage />;
+    return (
+        <Suspense fallback={<div>Chargement...</div>}>
+            <FavoritesPage />
+        </Suspense>
+    );
 };
 
 export default Page;

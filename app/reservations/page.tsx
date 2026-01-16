@@ -1,7 +1,12 @@
-import BookingPage from "@/pages/client/Booking";
+import { Suspense } from "react";
+import ReservationsPage from "@/views/client/Booking";
 
 const Page = () => {
-    return <BookingPage />;
+    return (
+        <Suspense fallback={<div>Chargement...</div>}>
+            <ReservationsPage />
+        </Suspense>
+    );
 };
 
 export default Page;

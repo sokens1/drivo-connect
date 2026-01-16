@@ -1,7 +1,12 @@
-import VehicleDetailPage from "@/pages/VehicleDetailPage";
+import { Suspense } from "react";
+import VehicleDetailPage from "@/views/VehicleDetailPage";
 
 export const runtime = "edge";
 
 export default function Page() {
-    return <VehicleDetailPage />;
+    return (
+        <Suspense fallback={<div>Chargement...</div>}>
+            <VehicleDetailPage />
+        </Suspense>
+    );
 }

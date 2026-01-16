@@ -1,7 +1,12 @@
-import AuthPage from "@/pages/AuthPage";
+import { Suspense } from "react";
+import AuthPage from "@/views/AuthPage";
 
 const Page = () => {
-  return <AuthPage initialTab="register" />;
+  return (
+    <Suspense fallback={<div>Chargement...</div>}>
+      <AuthPage initialTab="register" />
+    </Suspense>
+  );
 };
 
 export default Page;

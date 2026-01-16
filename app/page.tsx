@@ -1,7 +1,12 @@
-import HomePage from "@/pages/Index";
+import { Suspense } from "react";
+import Index from "@/views/Index";
 
 const Page = () => {
-  return <HomePage />;
+  return (
+    <Suspense fallback={<div>Chargement...</div>}>
+      <Index />
+    </Suspense>
+  );
 };
 
 export default Page;

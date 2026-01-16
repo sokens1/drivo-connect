@@ -1,4 +1,5 @@
-import AuthPage from "@/pages/AuthPage";
+import { Suspense } from "react";
+import AuthPage from "@/views/AuthPage";
 
 export const metadata = {
   title: "Authentification - Drivo",
@@ -6,5 +7,9 @@ export const metadata = {
 };
 
 export default function AuthPageRoute() {
-  return <AuthPage initialTab="login" />;
+  return (
+    <Suspense fallback={<div>Chargement...</div>}>
+      <AuthPage initialTab="login" />
+    </Suspense>
+  );
 }

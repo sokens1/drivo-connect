@@ -1,7 +1,12 @@
-import SearchPage from "@/pages/client/Search";
+import { Suspense } from "react";
+import SearchPage from "@/views/client/Search";
 
 const Page = () => {
-    return <SearchPage />;
+    return (
+        <Suspense fallback={<div>Chargement...</div>}>
+            <SearchPage />
+        </Suspense>
+    );
 };
 
 export default Page;

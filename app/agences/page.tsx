@@ -1,7 +1,12 @@
-import AgenciesPage from "@/pages/AgenciesPage";
+import { Suspense } from "react";
+import AgenciesPage from "@/views/AgenciesPage";
 
 const Page = () => {
-    return <AgenciesPage />;
+    return (
+        <Suspense fallback={<div>Chargement...</div>}>
+            <AgenciesPage />
+        </Suspense>
+    );
 };
 
 export default Page;

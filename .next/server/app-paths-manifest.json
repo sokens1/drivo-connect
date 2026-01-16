@@ -1,10 +1,18 @@
 {
-  "/vehicule/[id]/page": "app/vehicule/[id]/page.js",
-  "/dashboard/page": "app/dashboard/page.js",
-  "/booking/[id]/page": "app/booking/[id]/page.js",
+  "/_not-found/page": "app/_not-found/page.js",
+  "/agences/page": "app/agences/page.js",
+  "/contact/page": "app/contact/page.js",
+  "/dashboard/agence/page": "app/dashboard/agence/page.js",
   "/connexion/page": "app/connexion/page.js",
-  "/reservations/page": "app/reservations/page.js",
-  "/page": "app/page.js",
   "/favoris/page": "app/favoris/page.js",
-  "/agences/page": "app/agences/page.js"
+  "/booking/[id]/page": "app/booking/[id]/page.js",
+  "/dashboard/agence/ajouter/page": "app/dashboard/agence/ajouter/page.js",
+  "/inscription/page": "app/inscription/page.js",
+  "/dashboard/page": "app/dashboard/page.js",
+  "/dashboard/agence/modifier/[id]/page": "app/dashboard/agence/modifier/[id]/page.js",
+  "/page": "app/page.js",
+  "/reservations/page": "app/reservations/page.js",
+  "/search/page": "app/search/page.js",
+  "/authentification/page": "app/authentification/page.js",
+  "/vehicule/[id]/page": "app/vehicule/[id]/page.js"
 }

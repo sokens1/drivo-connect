@@ -1,10 +1,13 @@
+import { Suspense } from "react";
 import DashboardLayout from "@/components/DashboardLayout";
-import AddVehiclePage from "@/pages/agency/AddVehicle";
+import AddVehicle from "@/views/agency/AddVehicle";
 
 export default function Page() {
     return (
         <DashboardLayout>
-            <AddVehiclePage />
+            <Suspense fallback={<div>Chargement...</div>}>
+                <AddVehicle />
+            </Suspense>
         </DashboardLayout>
     );
 }

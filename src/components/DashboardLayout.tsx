@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, Suspense } from "react";
 import { useRouter } from "next/navigation";
 import { Bell, Menu, Car, User, LogOut, Settings } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -45,23 +45,27 @@ const DashboardLayout = ({ children, onAddVehicle }: DashboardLayoutProps) => {
       {/* Sidebar - Fixed on desktop */}
       <div className="hidden lg:block w-72 flex-shrink-0">
         <div className="fixed left-0 top-0 h-full w-72 z-40">
-          <DashboardSidebar
-            isOpen={true}
-            onClose={() => { }}
-            onLogout={handleLogout}
-            onAddVehicle={onAddVehicle}
-          />
+          <Suspense fallback={<div className="w-full h-full bg-card" />}>
+            <DashboardSidebar
+              isOpen={true}
+              onClose={() => { }}
+              onLogout={handleLogout}
+              onAddVehicle={onAddVehicle}
+            />
+          </Suspense>
         </div>
       </div>
 
       {/* Mobile Sidebar */}
       <div className="lg:hidden">
-        <DashboardSidebar
-          isOpen={sidebarOpen}
-          onClose={() => setSidebarOpen(false)}
-          onLogout={handleLogout}
-          onAddVehicle={onAddVehicle}
-        />
+        <Suspense fallback={null}>
+          <DashboardSidebar
+            isOpen={sidebarOpen}
+            onClose={() => setSidebarOpen(false)}
+            onLogout={handleLogout}
+            onAddVehicle={onAddVehicle}
+          />
+        </Suspense>
       </div>
 
       {/* Main Content */}
