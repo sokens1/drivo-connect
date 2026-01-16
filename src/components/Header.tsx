@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Menu, X, Car, Search, User, LogIn } from "lucide-react";
+import { Menu, X, Car, Search as SearchIcon, User, LogIn } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useApp } from "@/context/AppContext";
 
@@ -23,7 +23,7 @@ const Header = () => {
 
   const navLinks: HeaderNavLink[] = [
     { path: "/", label: "Accueil", icon: Car },
-    { path: "/#vehicules", label: "Véhicules", icon: Search },
+    { path: "/#vehicules", label: "Véhicules", icon: SearchIcon },
     { path: "/#pourquoi-nous", label: "Pourquoi nous", icon: Car },
     { path: "/#nos-agences", label: "Nos agences", icon: Car },
     { path: "/#nos-clients", label: "Nos clients", icon: Car },
@@ -49,11 +49,10 @@ const Header = () => {
               <Link
                 key={link.path}
                 href={link.path}
-                className={`relative flex items-center gap-2 px-4 py-2 rounded-lg font-medium text-sm transition-all duration-200 ${
-                  isActive(link.path)
+                className={`relative flex items-center gap-2 px-4 py-2 rounded-lg font-medium text-sm transition-all duration-200 ${isActive(link.path)
                     ? "text-primary bg-primary/10"
                     : "text-muted-foreground hover:text-foreground hover:bg-muted"
-                }`}
+                  }`}
               >
                 {link.label}
                 {link.badge !== undefined && link.badge > 0 && (
@@ -115,11 +114,10 @@ const Header = () => {
                   key={link.path}
                   href={link.path}
                   onClick={() => setIsMenuOpen(false)}
-                  className={`flex items-center justify-between px-4 py-3 rounded-lg font-medium transition-all ${
-                    isActive(link.path)
+                  className={`flex items-center justify-between px-4 py-3 rounded-lg font-medium transition-all ${isActive(link.path)
                       ? "text-primary bg-primary/10"
                       : "text-muted-foreground hover:text-foreground hover:bg-muted"
-                  }`}
+                    }`}
                 >
                   <span className="flex items-center gap-3">
                     {link.label}

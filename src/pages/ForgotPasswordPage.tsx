@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import Link from "next/link";
 import { Mail, ChevronLeft, Send, Check, Car } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -14,7 +14,7 @@ const ForgotPasswordPage = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     if (!email) {
       toast.error("Veuillez entrer votre adresse email");
       return;
@@ -35,7 +35,7 @@ const ForgotPasswordPage = () => {
       {/* Header */}
       <header className="bg-card border-b py-4">
         <div className="container mx-auto px-4">
-          <Link to="/" className="flex items-center gap-2 w-fit">
+          <Link href="/" className="flex items-center gap-2 w-fit">
             <div className="w-10 h-10 rounded-xl bg-primary flex items-center justify-center">
               <Car className="h-6 w-6 text-primary-foreground" />
             </div>
@@ -86,7 +86,7 @@ const ForgotPasswordPage = () => {
 
                 <div className="text-center">
                   <Link
-                    to="/connexion"
+                    href="/connexion"
                     className="text-sm text-muted-foreground hover:text-primary transition-colors"
                   >
                     <ChevronLeft className="h-4 w-4 inline mr-1" />
@@ -108,7 +108,7 @@ const ForgotPasswordPage = () => {
                     Renvoyer l'email
                   </Button>
                   <Button variant="hero" className="w-full" asChild>
-                    <Link to="/connexion">Retour à la connexion</Link>
+                    <Link href="/connexion">Retour à la connexion</Link>
                   </Button>
                 </div>
               </div>

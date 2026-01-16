@@ -2,15 +2,14 @@
 
 import Link from "next/link";
 import { usePathname, useSearchParams } from "next/navigation";
-import { 
-  Car, 
-  LayoutDashboard, 
-  Heart, 
-  Calendar, 
-  User, 
-  Settings, 
-  LogOut, 
-  BarChart3, 
+import {
+  Car,
+  LayoutDashboard,
+  Heart,
+  Calendar,
+  User,
+  Settings,
+  LogOut,
   Plus,
   MessageSquare,
   Bell,
@@ -43,28 +42,24 @@ const DashboardSidebar = ({ isOpen, onClose, onLogout, onAddVehicle }: Dashboard
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const { user } = useApp();
-  
+
   const isAgency = user?.role === "agency";
 
   const clientMenuItems: SidebarItem[] = [
     { icon: LayoutDashboard, label: "Tableau de bord", href: "/dashboard" },
     { icon: Heart, label: "Mes favoris", href: "/favoris" },
-    { icon: Calendar, label: "Réservations", href: "/dashboard?tab=reservations" },
-    { icon: Car, label: "Rechercher", href: "/recherche" },
+    { icon: Calendar, label: "Réservations", href: "/reservations" },
+    { icon: Car, label: "Rechercher", href: "/search" },
     { icon: Building2, label: "Agences", href: "/agences" },
     { icon: MessageSquare, label: "Messages", href: "/dashboard?tab=messages", badge: 2 },
-    { icon: Bell, label: "Notifications", href: "/dashboard?tab=notifications", badge: 5 },
-    { icon: User, label: "Mon profil", href: "/dashboard?tab=profile" },
     { icon: HelpCircle, label: "Aide & Support", href: "/contact" },
   ];
 
   const agencyMenuItems: SidebarItem[] = [
     { icon: LayoutDashboard, label: "Tableau de bord", href: "/dashboard/agence" },
     { icon: Car, label: "Mes véhicules", href: "/dashboard/agence?tab=vehicles" },
-    { icon: BarChart3, label: "Statistiques", href: "/dashboard/agence?tab=analytics" },
     { icon: Calendar, label: "Réservations", href: "/dashboard/agence?tab=reservations", badge: 3 },
     { icon: MessageSquare, label: "Messages", href: "/dashboard/agence?tab=messages", badge: 4 },
-    { icon: Bell, label: "Notifications", href: "/dashboard/agence?tab=notifications", badge: 7 },
     { icon: FileText, label: "Documents", href: "/dashboard/agence?tab=documents" },
     { icon: Settings, label: "Paramètres", href: "/dashboard/agence?tab=settings" },
     { icon: HelpCircle, label: "Aide & Support", href: "/contact" },
@@ -85,7 +80,7 @@ const DashboardSidebar = ({ isOpen, onClose, onLogout, onAddVehicle }: Dashboard
     <>
       {/* Overlay for mobile */}
       {isOpen && (
-        <div 
+        <div
           className="fixed inset-0 bg-black/50 z-40 lg:hidden"
           onClick={onClose}
         />
@@ -109,21 +104,7 @@ const DashboardSidebar = ({ isOpen, onClose, onLogout, onAddVehicle }: Dashboard
             </Link>
           </div>
 
-          {/* User Profile */}
-          <div className="p-4 border-b border-border">
-            <div className="flex items-center gap-3">
-              <Avatar className="h-12 w-12">
-                <AvatarImage src={`https://api.dicebear.com/7.x/initials/svg?seed=${user?.name}`} />
-                <AvatarFallback>{user?.name?.charAt(0) || "U"}</AvatarFallback>
-              </Avatar>
-              <div className="flex-1 min-w-0">
-                <p className="font-semibold text-foreground truncate">{user?.name}</p>
-                <Badge variant={isAgency ? "success" : "secondary"} className="text-xs">
-                  {isAgency ? "Agence" : "Client"}
-                </Badge>
-              </div>
-            </div>
-          </div>
+
 
           {/* Add Vehicle Button (Agency only) */}
           {isAgency && onAddVehicle && (
@@ -156,7 +137,7 @@ const DashboardSidebar = ({ isOpen, onClose, onLogout, onAddVehicle }: Dashboard
                       {item.badge && item.badge > 0 && (
                         <span className={cn(
                           "px-2 py-0.5 rounded-full text-xs font-bold",
-                          isActive(item.href) 
+                          isActive(item.href)
                             ? "bg-primary-foreground/20 text-primary-foreground"
                             : "bg-primary text-primary-foreground"
                         )}>

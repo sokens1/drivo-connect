@@ -1,6 +1,33 @@
 {
   "version": 3,
   "middleware": {},
-  "functions": {},
+  "functions": {
+    "/vehicule/[id]/page": {
+      "files": [
+        "server/server-reference-manifest.js",
+        "server/app/vehicule/[id]/page_client-reference-manifest.js",
+        "server/middleware-build-manifest.js",
+        "server/middleware-react-loadable-manifest.js",
+        "server/next-font-manifest.js",
+        "server/interception-route-rewrite-manifest.js",
+        "server/edge-runtime-webpack.js",
+        "server/app/vehicule/[id]/page.js"
+      ],
+      "name": "app/vehicule/[id]/page",
+      "page": "/vehicule/[id]/page",
+      "matchers": [
+        {
+          "regexp": "^/vehicule/(?<id>[^/]+?)$",
+          "originalSource": "/vehicule/[id]"
+        }
+      ],
+      "wasm": [],
+      "assets": [],
+      "env": {
+        "__NEXT_BUILD_ID": "development",
+        "NEXT_SERVER_ACTIONS_ENCRYPTION_KEY": "tdfESOQry6w+jHHkhwCvikPmm5gB9YPnNWrPxhUDX1o="
+      }
+    }
+  },
   "sortedMiddleware": []
 }

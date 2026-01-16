@@ -33,21 +33,21 @@ const Index = () => {
   const [agencySlide, setAgencySlide] = useState(0);
   const [isAutoplay, setIsAutoplay] = useState(true);
   const [vehicleScrollIndex, setVehicleScrollIndex] = useState(0);
-  
+
   // Nombre de cartes par slide selon la taille d'écran
   const agenciesPerSlide = isMobile ? 1 : 3;
   const maxAgencySlide = Math.max(0, mockAgencies.length - agenciesPerSlide);
-  
+
   // Nombre de véhicules visibles selon la taille d'écran
   const vehiclesPerSlide = isMobile ? 1 : (typeof window !== 'undefined' && window.innerWidth < 1024 ? 2 : 4);
   const maxVehicleSlide = Math.max(0, vehicles.length - vehiclesPerSlide);
 
   const featuredVehicles = vehicles.slice(0, 4);
-  
+
   // Autoplay du carousel
   useEffect(() => {
     if (!isAutoplay) return;
-    
+
     const interval = setInterval(() => {
       setAgencySlide((current) => {
         if (current >= maxAgencySlide) {
@@ -56,10 +56,10 @@ const Index = () => {
         return current + 1;
       });
     }, 5000); // Changer de slide tous les 5 secondes
-    
+
     return () => clearInterval(interval);
   }, [isAutoplay, maxAgencySlide]);
-  
+
   const features = [
     {
       icon: Shield,
@@ -86,7 +86,7 @@ const Index = () => {
   return (
     <div className="min-h-screen flex flex-col bg-background">
       <Header />
-      
+
       <main className="flex-1">
         {/* Hero Section */}
         <section className="relative min-h-[85vh] flex items-center overflow-hidden" aria-label="Section d'accueil">
@@ -106,13 +106,13 @@ const Index = () => {
                 <Sparkles className="h-3 w-3 mr-1" />
                 La 1ère plateforme auto au Gabon
               </Badge>
-              
+
               <h1 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-background leading-tight">
                 Trouvez votre véhicule <span className="text-primary">idéal</span>
               </h1>
-              
+
               <p className="text-lg text-background/80 max-w-lg">
-                Achetez ou louez votre prochain véhicule parmi des centaines d'offres 
+                Achetez ou louez votre prochain véhicule parmi des centaines d'offres
                 vérifiées sur tout le territoire gabonais.
               </p>
 
@@ -155,7 +155,7 @@ const Index = () => {
                 </p>
               </div>
               <Button variant="outline" asChild>
-                <Link href="/recherche">
+                <Link href="/search">
                   Voir tout
                   <ArrowRight className="h-4 w-4 ml-2" />
                 </Link>
@@ -164,7 +164,7 @@ const Index = () => {
 
             {/* Horizontal scrollable carousel */}
             <div className="relative">
-              <div 
+              <div
                 className="overflow-x-auto scrollbar-hide"
                 onScroll={(e) => {
                   const scrollLeft = e.currentTarget.scrollLeft;
@@ -181,16 +181,15 @@ const Index = () => {
                   ))}
                 </div>
               </div>
-              
+
               {/* Scroll indicators */}
               <div className="flex justify-center gap-2 mt-6">
                 {Array.from({ length: Math.ceil(featuredVehicles.length / vehiclesPerSlide) }).map(
                   (_, index) => (
                     <button
                       key={index}
-                      className={`h-2 rounded-full transition-all duration-300 ${
-                        index === vehicleScrollIndex ? "bg-primary w-8" : "bg-muted w-2"
-                      }`}
+                      className={`h-2 rounded-full transition-all duration-300 ${index === vehicleScrollIndex ? "bg-primary w-8" : "bg-muted w-2"
+                        }`}
                       aria-label={`Aller à la diapositive ${index + 1}`}
                     />
                   )
@@ -237,14 +236,14 @@ const Index = () => {
             <Card className="p-8 md:p-12 bg-gradient-to-br from-muted to-background border-2 border-primary/20 overflow-hidden relative">
               <div className="absolute -right-20 -bottom-20 w-64 h-64 bg-primary/10 rounded-full blur-3xl" />
               <div className="absolute -left-10 -top-10 w-40 h-40 bg-success/10 rounded-full blur-3xl" />
-              
+
               <div className="relative z-10 flex flex-col md:flex-row items-center gap-8">
                 <div className="flex-1 text-center md:text-left">
                   <h2 className="font-display text-2xl md:text-3xl font-bold text-foreground mb-3">
                     Vous êtes une agence ?
                   </h2>
                   <p className="text-muted-foreground max-w-lg">
-                    Rejoignez Drivo et touchez des milliers de clients potentiels. 
+                    Rejoignez Drivo et touchez des milliers de clients potentiels.
                     Gérez vos annonces facilement et boostez vos ventes.
                   </p>
                 </div>
@@ -276,7 +275,7 @@ const Index = () => {
               </p>
             </div>
 
-            <div 
+            <div
               className="relative group"
               onMouseEnter={() => setIsAutoplay(false)}
               onMouseLeave={() => setIsAutoplay(true)}
@@ -343,9 +342,8 @@ const Index = () => {
                         <button
                           key={index}
                           onClick={() => setAgencySlide(index)}
-                          className={`h-2 rounded-full transition-all duration-300 ${
-                            index === agencySlide ? "bg-primary w-8" : "bg-muted w-2"
-                          }`}
+                          className={`h-2 rounded-full transition-all duration-300 ${index === agencySlide ? "bg-primary w-8" : "bg-muted w-2"
+                            }`}
                           aria-label={`Aller à la diapositive ${index + 1}`}
                         />
                       )

@@ -1,6 +1,6 @@
 "use client";
 
-import React, { createContext, useContext, useState, ReactNode } from "react";
+import React, { createContext, useContext, useState, ReactNode, useEffect } from "react";
 import { User, Vehicle, mockVehicles } from "@/data/mockData";
 
 interface AppContextType {
@@ -34,11 +34,32 @@ const defaultFilters: FilterState = {
 const AppContext = createContext<AppContextType | undefined>(undefined);
 
 export const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
-  const [user, setUser] = useState<User | null>(null);
+  const [user, setUserState] = useState<User | null>(null);
   const [vehicles] = useState<Vehicle[]>(mockVehicles);
   const [favorites, setFavorites] = useState<string[]>([]);
   const [searchQuery, setSearchQuery] = useState("");
   const [filters, setFilters] = useState<FilterState>(defaultFilters);
+
+  // Initialize user from session storage
+  useEffect(() => {
+    const savedUser = sessionStorage.getItem("drivo_user");
+    if (savedUser) {
+      try {
+        setUserState(JSON.parse(savedUser));
+      } catch (e) {
+        console.error("Failed to parse saved user", e);
+      }
+    }
+  }, []);
+
+  const setUser = (user: User | null) => {
+    setUserState(user);
+    if (user) {
+      sessionStorage.setItem("drivo_user", JSON.stringify(user));
+    } else {
+      sessionStorage.removeItem("drivo_user");
+    }
+  };
 
   const toggleFavorite = (vehicleId: string) => {
     setFavorites((prev) =>

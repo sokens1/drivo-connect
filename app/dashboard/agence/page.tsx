@@ -1,4 +1,4 @@
-import AgencyDashboard from "@/pages/AgencyDashboard";
+import AgencyDashboard from "@/pages/agency/Dashboard";
 
 const Page = () => {
   return <AgencyDashboard />;

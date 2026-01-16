@@ -1,8 +1,10 @@
 {
-  "/_not-found/page": "app/_not-found/page.js",
-  "/page": "app/page.js",
-  "/dashboard/agence/page": "app/dashboard/agence/page.js",
-  "/inscription/page": "app/inscription/page.js",
+  "/vehicule/[id]/page": "app/vehicule/[id]/page.js",
+  "/dashboard/page": "app/dashboard/page.js",
+  "/booking/[id]/page": "app/booking/[id]/page.js",
   "/connexion/page": "app/connexion/page.js",
-  "/dashboard/page": "app/dashboard/page.js"
+  "/reservations/page": "app/reservations/page.js",
+  "/page": "app/page.js",
+  "/favoris/page": "app/favoris/page.js",
+  "/agences/page": "app/agences/page.js"
 }

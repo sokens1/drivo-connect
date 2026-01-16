@@ -19,7 +19,7 @@ const Footer = () => {
               </span>
             </Link>
             <p className="text-background/70 text-sm">
-              La première plateforme de vente et location de véhicules au Gabon. 
+              La première plateforme de vente et location de véhicules au Gabon.
               Trouvez votre véhicule idéal en quelques clics.
             </p>
             <div className="flex gap-3">
@@ -57,12 +57,12 @@ const Footer = () => {
                 </Link>
               </li>
               <li>
-                <Link href="/recherche" className="text-background/70 hover:text-primary transition-colors text-sm">
+                <Link href="/search" className="text-background/70 hover:text-primary transition-colors text-sm">
                   Véhicules à vendre
                 </Link>
               </li>
               <li>
-                <Link href="/recherche?type=location" className="text-background/70 hover:text-primary transition-colors text-sm">
+                <Link href="/search?type=location" className="text-background/70 hover:text-primary transition-colors text-sm">
                   Location de véhicules
                 </Link>
               </li>

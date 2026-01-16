@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import Link from "next/link";
 import { ChevronLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Header from "@/components/Header";
@@ -12,7 +12,7 @@ const PrivacyPage = () => {
       <main className="flex-1 py-12">
         <div className="container mx-auto px-4 max-w-4xl">
           <Button variant="ghost" className="mb-6" asChild>
-            <Link to="/">
+            <Link href="/">
               <ChevronLeft className="h-4 w-4 mr-2" />
               Retour à l'accueil
             </Link>

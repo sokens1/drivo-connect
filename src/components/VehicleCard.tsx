@@ -28,7 +28,7 @@ const VehicleCard = ({ vehicle }: VehicleCardProps) => {
           />
           {/* Overlay gradient */}
           <div className="absolute inset-0 bg-gradient-to-t from-foreground/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-          
+
           {/* Type badge */}
           <div className="absolute top-3 left-3 flex gap-2">
             {vehicle.type === "vente" && (
@@ -58,9 +58,8 @@ const VehicleCard = ({ vehicle }: VehicleCardProps) => {
             aria-label={isFavorite ? "Retirer des favoris" : "Ajouter aux favoris"}
           >
             <Heart
-              className={`h-4 w-4 transition-colors ${
-                isFavorite ? "fill-destructive text-destructive" : "text-foreground"
-              }`}
+              className={`h-4 w-4 transition-colors ${isFavorite ? "fill-destructive text-destructive" : "text-foreground"
+                }`}
             />
           </Button>
 
@@ -131,7 +130,7 @@ const VehicleCard = ({ vehicle }: VehicleCardProps) => {
 
         {/* View More Button */}
         <Button variant="outline" size="sm" className="w-full mt-4" asChild>
-          <Link href="/authentification">
+          <Link href={`/vehicule/${vehicle.id}`}>
             Voir plus
           </Link>
         </Button>

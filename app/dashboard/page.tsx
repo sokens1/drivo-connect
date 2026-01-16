@@ -1,4 +1,4 @@
-import ClientDashboard from "@/pages/ClientDashboard";
+import ClientDashboard from "@/pages/client/Dashboard";
 
 const Page = () => {
   return <ClientDashboard />;
